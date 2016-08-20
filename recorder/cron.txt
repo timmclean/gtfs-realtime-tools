@@ -1,0 +1,6 @@
+# Put this in your crontab
+# (use `crontab -e`)
+* * * * * $HOME/grt/poll.sh
+* * * * * sleep 20 && $HOME/grt/poll.sh
+* * * * * sleep 40 && $HOME/grt/poll.sh
+0 1 * * * sleep 3 && $HOME/grt/archive.sh
