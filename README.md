@@ -28,3 +28,11 @@ Run the build script:
 ```
 ./build.py
 ```
+
+## Tools
+
+-	**`gtfsrt2text.sh`**: Renders a GTFS-RT feed file in a human-readable text
+	format for debugging.
+-	**`get-timestamp.py`**: Extracts the timestamp field of a GTFS-RT feed file.
+-	**`format-timestamp.py`**: Converts a POSIX timestamp (like the output of
+	`get-timestamp.py`) to a human-readable format.
