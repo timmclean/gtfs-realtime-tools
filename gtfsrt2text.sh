@@ -12,13 +12,17 @@ usage() {
 	exit 1
 }
 
+decode() {
+	protoc --decode=transit_realtime.FeedMessage --proto_path "$(dirname "$0")" "$(dirname "$0")/gtfs-realtime.proto"
+}
+
 if [ $# -eq 0 ]; then
-	protoc --decode=transit_realtime.FeedMessage gtfs-realtime.proto
+	decode
 elif [ $# -eq 1 ]; then
 	if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 		usage
 	else
-		cat "$1" | protoc --decode=transit_realtime.FeedMessage gtfs-realtime.proto
+		cat "$1" | decode
 	fi
 else
 	usage
