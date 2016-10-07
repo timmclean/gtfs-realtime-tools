@@ -15,6 +15,8 @@ A set of utilities for interacting with GTFS-realtime feeds.
 
 	I think `brew install protobuf` might work on Mac.
 
+	Run `protoc --version` to confirm that version 3 or higher is installed.
+
 -	Install the protobuf Python library:
 
 	```
