@@ -15,7 +15,7 @@ def run():
         return 1
 
     if len(sys.argv) == 2:
-        timestamp = sys.argv[1]
+        timestamp = int(sys.argv[1])
     else:
         timestamp = int(sys.stdin.read().strip())
 
