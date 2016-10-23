@@ -6,7 +6,7 @@ data_dir=$HOME/grt
 # Generate a new ID randomly to avoid collisions
 new_id=$((cat /dev/urandom || true) | (tr -dc a-zA-Z0-9 || true) | head -c 20)
 
-for feed_type in trip-updates vehicle-positions; do
+for feed_type in vehicle-positions; do
 	# Get the current feed archive dir
 	feed_archive_dir=$(readlink -f "${data_dir}/${feed_type}")
 
