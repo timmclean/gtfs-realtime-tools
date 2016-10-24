@@ -25,3 +25,7 @@ for feed_type in vehicle-positions; do
 	# Remove old feed archive dir
 	rm -rf "${feed_archive_dir}"
 done
+
+# Run deduplicator
+yesterday=$(date --date='yesterday' '+%Y-%m-%d')
+"$data_dir/deduplicator/dedupe_archives.py" "$HOME/grt" "$HOME/grt/public" "$yesterday"
