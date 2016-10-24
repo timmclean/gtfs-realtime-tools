@@ -5,6 +5,7 @@ import io
 import os
 import sys
 
+from binascii import hexlify
 from glob import glob
 from shutil import copyfile, rmtree
 from subprocess import check_call
@@ -42,7 +43,7 @@ def dedupe_archives(input_dir, output_dir, date_to_extract):
         raise Exception('output file already exists at ' + output_archive_file)
 
     # Create directories for temporary work
-    tmp_dir = os.path.join(output_dir, os.urandom(16).hex())
+    tmp_dir = os.path.join(output_dir, hexlify(os.urandom(16)).decode())
     os.mkdir(tmp_dir)
     raw_messages_dir = os.path.join(tmp_dir, 'raw_messages')
     os.mkdir(raw_messages_dir)
