@@ -35,6 +35,6 @@ Run the build script:
 
 -	**`gtfsrt2text.sh`**: Renders a GTFS-RT feed file in a human-readable text
 	format for debugging.
--	**`get-timestamp.py`**: Extracts the timestamp field of a GTFS-RT feed file.
--	**`format-timestamp.py`**: Converts a POSIX timestamp (like the output of
-	`get-timestamp.py`) to a human-readable format.
+-	**`get_timestamp.py`**: Extracts the timestamp field of a GTFS-RT feed file.
+-	**`format_timestamp.py`**: Converts a POSIX timestamp (like the output of
+	`get_timestamp.py`) to a human-readable format.

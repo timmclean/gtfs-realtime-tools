@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import datetime
 import sys
 
 from gtfs_realtime_pb2 import FeedMessage
@@ -9,7 +10,7 @@ def get_timestamp(feed_msg_file_path):
         feed_msg_raw = f.read()
 
     feed_msg = FeedMessage.FromString(feed_msg_raw)
-    return feed_msg.header.timestamp
+    return datetime.datetime.fromtimestamp(feed_msg.header.timestamp)
 
 def run():
     if len(sys.argv) != 2:
@@ -21,7 +22,7 @@ def run():
 
     feed_msg_file = sys.argv[1]
 
-    print(get_timestamp(feed_msg_file))
+    print(int(get_timestamp(feed_msg_file).timestamp()))
 
     return 0
 
