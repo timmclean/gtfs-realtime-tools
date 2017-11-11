@@ -17,6 +17,9 @@ for feed_type in vehicle-positions; do
 	# Give any current downloads a chance to finish
 	sleep 5
 
+	# Clear out empty files (from failed polls)
+	find "${feed_archive_dir}" -type f -size 0c -exec rm {} \;
+
 	# Compress feed archive into tarball
 	cd $feed_archive_dir
 	timestamp=$(date '+%Y%m%d-%H%M%S-%N')
