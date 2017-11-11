@@ -55,11 +55,15 @@ def dedupe_archives(input_dir, output_dir, date_to_extract):
     # and if they did, that might interfere with deduplication)
     check_call([
         'tar', 'xfz',
-        find_archive_from_date(input_dir, date_to_extract)
+        os.path.realpath(
+            find_archive_from_date(input_dir, date_to_extract)
+        )
     ], cwd=raw_messages_dir)
     check_call([
         'tar', 'xfz',
-        find_archive_from_date(input_dir, date_to_extract + datetime.timedelta(days=1))
+        os.path.realpath(
+            find_archive_from_date(input_dir, date_to_extract + datetime.timedelta(days=1))
+        )
     ], cwd=raw_messages_dir)
 
     # Process messages
@@ -85,7 +89,8 @@ def dedupe_archives(input_dir, output_dir, date_to_extract):
 
     # Create output archive
     check_call(
-        ['tar', 'cfj', output_archive_file] + os.listdir(processed_messages_dir),
+        ['tar', 'cfj', os.path.realpath(output_archive_file)] +
+            os.listdir(processed_messages_dir),
         cwd=processed_messages_dir
     )
 
