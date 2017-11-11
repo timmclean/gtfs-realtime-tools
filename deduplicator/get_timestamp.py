@@ -9,6 +9,9 @@ def get_timestamp(feed_msg_file_path):
     with open(feed_msg_file_path, 'rb') as f:
         feed_msg_raw = f.read()
 
+    if feed_msg_raw == '':
+        return None
+
     feed_msg = FeedMessage.FromString(feed_msg_raw)
     return datetime.datetime.fromtimestamp(feed_msg.header.timestamp)
 
@@ -22,7 +25,12 @@ def run():
 
     feed_msg_file = sys.argv[1]
 
-    print(int(get_timestamp(feed_msg_file).timestamp()))
+    ts = get_timestamp(feed_msg_file)
+    if ts is None:
+        print("Empty file")
+        return 2
+
+    print(int(ts.timestamp()))
 
     return 0
 

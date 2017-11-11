@@ -68,7 +68,7 @@ def dedupe_archives(input_dir, output_dir, date_to_extract):
 
         # Check if timestamp is for the date we want
         ts = get_timestamp(raw_message_file)
-        if ts.date() != date_to_extract:
+        if ts is None or ts.date() != date_to_extract:
             # We don't care about this feed message, so skip
             continue
 
