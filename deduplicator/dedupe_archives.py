@@ -70,8 +70,14 @@ def dedupe_archives(input_dir, output_dir, date_to_extract):
     for raw_message_file_name in os.listdir(raw_messages_dir):
         raw_message_file = os.path.join(raw_messages_dir, raw_message_file_name)
 
+        # Read timestamp from file
+        try:
+            ts = get_timestamp(raw_message_file)
+        except:
+            print("Error reading timestamp from " + repr(raw_message_file))
+            raise
+
         # Check if timestamp is for the date we want
-        ts = get_timestamp(raw_message_file)
         if ts is None or ts.date() != date_to_extract:
             # We don't care about this feed message, so skip
             continue

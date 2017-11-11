@@ -9,7 +9,7 @@ def get_timestamp(feed_msg_file_path):
     with open(feed_msg_file_path, 'rb') as f:
         feed_msg_raw = f.read()
 
-    if feed_msg_raw == '':
+    if feed_msg_raw == b'':
         return None
 
     feed_msg = FeedMessage.FromString(feed_msg_raw)
