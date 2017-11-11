@@ -11,7 +11,7 @@ def run():
         print("Usage:")
         print("  {} <input-dir> <output-dir> <start-date> <end-date>".format(sys.argv[0]))
         print()
-        print("Runs dedupe-archives.py for all dates between start-date and end-date (inclusive).")
+        print("Runs dedupe_archives.py for all dates between start-date and end-date (inclusive).")
         return 1
 
     input_dir = sys.argv[1]
