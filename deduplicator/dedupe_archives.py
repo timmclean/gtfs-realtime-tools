@@ -94,11 +94,20 @@ def dedupe_archives(input_dir, output_dir, date_to_extract):
         copyfile(raw_message_file, processed_message_file)
 
     # Create output archive
-    check_call(
-        ['tar', 'cfj', os.path.realpath(output_archive_file)] +
-            os.listdir(processed_messages_dir),
-        cwd=processed_messages_dir
-    )
+    processed_message_files = os.listdir(processed_messages_dir)
+    if len(processed_message_files) > 0:
+        check_call(
+            ['tar', 'cfj', os.path.realpath(output_archive_file)] + processed_message_files,
+            cwd=processed_messages_dir
+        )
+    else:
+        # Create an empty tar file.
+        # If no input files are provided, tar will refuse to create the tar file.
+        # The -T argument is used to override this behaviour.
+        check_call(
+            ['tar', 'cfj', os.path.realpath(output_archive_file), '-T', '/dev/null'],
+            cwd=processed_messages_dir
+        )
 
     # Clean up temp dir
     rmtree(tmp_dir)
