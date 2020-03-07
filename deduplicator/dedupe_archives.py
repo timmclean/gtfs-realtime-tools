@@ -74,8 +74,9 @@ def dedupe_archives(input_dir, output_dir, date_to_extract):
         try:
             ts = get_timestamp(raw_message_file)
         except:
+            # Ignore this file and continue
             print("Error reading timestamp from " + repr(raw_message_file))
-            raise
+            continue
 
         # Check if timestamp is for the date we want
         if ts is None or ts.date() != date_to_extract:
