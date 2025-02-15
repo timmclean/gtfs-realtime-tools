@@ -8,4 +8,4 @@ data_dir=$HOME/grt
 pos_dir=$data_dir/vehicle-positions
 timestamp=$(date '+%Y%m%d-%H%M%S-%N')
 
-curl -s 'https://webapps.regionofwaterloo.ca/api/grt-routes/api/vehiclepositions' > ${pos_dir}/$timestamp
+curl --ciphers DEFAULT@SECLEVEL=1 -s 'https://webapps.regionofwaterloo.ca/api/grt-routes/api/vehiclepositions' > ${pos_dir}/$timestamp
