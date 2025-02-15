@@ -23,7 +23,12 @@ for feed_type in vehicle-positions; do
 	# Compress feed archive into tarball
 	cd $feed_archive_dir
 	timestamp=$(date '+%Y%m%d-%H%M%S-%N')
-	tar cfz "${data_dir}/${feed_type}-archive-${timestamp}.tar.gz" *
+	if [ -z "$(ls -A)" ]; then
+		# Create empty tar
+		tar cfz "${data_dir}/${feed_type}-archive-${timestamp}.tar.gz" -T /dev/null
+	else
+		tar cfz "${data_dir}/${feed_type}-archive-${timestamp}.tar.gz" *
+	fi
 
 	# Remove old feed archive dir
 	rm -rf "${feed_archive_dir}"
